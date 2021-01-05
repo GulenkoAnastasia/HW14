@@ -17,11 +17,12 @@ a {
     display: flex;
     flex-direction: row;
     width: 100%;
+    height: 100vh;
   }
 }
 .car-preview {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
   @include media(">=1280px") {
     width: 40%;
@@ -29,7 +30,9 @@ a {
   @include media(">=1680px") {
     width: 50%;
   }
-  img {
+  > img {
+    width: 166vw;
+    display: block;
     @include media(">=850px") {
       width: 100%;
     }
@@ -44,7 +47,7 @@ a {
     position: absolute;
     width: 47px;
     height: 25px;
-    bottom: 50px;
+    bottom: 90px;
     left: calc(50% - 23px);
     @include media(">=1280px") {
       display: none;
@@ -54,8 +57,12 @@ a {
 .logo-wrapper {
   width: 80%;
   position: absolute;
-  top: 50px;
+  top: 43px;
   left: calc(50% - 40%);
+  @include media(">=1280px") {
+    top: 54px;
+    left: calc(50% - 37%);
+  }
 }
 .logo {
   display: flex;
@@ -70,6 +77,7 @@ a {
     width: 38%;
     display: block;
     margin-left: -4%;
+    padding-top: 8px;
     img {
       width: 100%;
     }
@@ -78,28 +86,48 @@ a {
 .burger-menu {
   position: absolute;
   z-index: 2;
-  top: 130px;
-  width: 100%;
+  top: 118px;
+  left: calc(50% - 23px);
 
-  // background: turquoise;
+  @include media(">=850px") {
+    top: 180px;
+  }
+  @include media(">=1280px") {
+    top: 50px;
+    width: 1280px;
+    max-width: 1280px;
+    left: calc(50% - 655px);
+  }
+  @include media(">=1680px") {
+    width: 1560px;
+    max-width: 1560px;
+    left: calc(50% - 780px);
+  }
   input[type="checkbox"] {
     display: none;
   }
   input[type="checkbox"]:checked ~ ul {
     opacity: 1;
-    height: calc(100vh - 185px);
+    height: calc(100vh - 161px);
+    @include media(">=850px") {
+      height: calc(100vh - 235px);
+    }
   }
   label {
     cursor: pointer;
-    width: 9%;
+    width: 46px;
     height: 17px;
     position: absolute;
-    left: calc(50% - 4.5%);
+    left: calc(50% - 23px);
+    @include media(">=1280px") {
+      left: initial;
+      right: 5px;
+    }
     &:before,
     &:after {
       content: "";
       height: 3px;
-      width: 100%;
+      width: 46px;
       background: $base-color-bright;
       position: absolute;
       top: 0;
@@ -107,6 +135,12 @@ a {
     &:after {
       top: initial;
       bottom: 0;
+    }
+    &:before {
+      @include media(">=1280px") {
+        width: 60px;
+        right: 0;
+      }
     }
   }
 }
@@ -122,21 +156,22 @@ a {
   left: calc(50% - 40%);
   opacity: 0;
   transition: all 1s ease-in-out;
-  // height: calc(100vh - 130px);
   li {
     text-transform: uppercase;
-    padding-top: 30px;
+    padding-top: 45px;
     font-size: 22px;
   }
 }
+
 .car-description {
   background: $bg-text;
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
   @include media(">=1280px") {
-    width: 60%;
-    display: flex;
-    flex-direction: column;
+    max-width: 61%;
     overflow: visible;
     z-index: 1;
   }
@@ -147,16 +182,35 @@ a {
 .description-wrapper {
   width: 81%;
   margin: auto;
+  position: relative;
   @include media(">=1280px") {
-    width: 73%;
+    width: 72%;
+  }
+  > a {
+    display: none;
+    // @include media(">=1280px") {
+    //   position: absolute;
+    //   display: block;
+    //   top: 38px;
+    //   text-align: right;
+    //   right: 10px;
+    // }
+  }
+}
+.description {
+  @include media(">=1280px") {
+    width: 100%;
   }
   > span {
     font: 600 16px "Gilroy", sans-serif;
     color: #919191;
     letter-spacing: 9.7px;
-    padding-top: 47px;
+    padding-top: 114px;
     padding-bottom: 15px;
     display: block;
+    @include media(">=1280px") {
+      padding-top: 45px;
+    }
     strong {
       color: $base-color-bright;
     }
@@ -166,6 +220,7 @@ a {
     letter-spacing: -1.3px;
     margin-bottom: 29px;
     position: relative;
+    max-width: 520px;
     &:before {
       position: absolute;
       content: "";
@@ -181,6 +236,7 @@ a {
   }
   p {
     margin-bottom: 46px;
+
     span {
       font-weight: 600;
     }
@@ -212,10 +268,11 @@ a {
     @include media(">=1280px") {
       height: 155px;
       width: 100%;
-      justify-content: flex-end;
+      margin-left: -135px;
     }
     li {
       margin-top: -95px;
+      cursor: pointer;
     }
     .active {
       @include media(">=1280px") {
